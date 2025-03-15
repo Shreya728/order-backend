@@ -7,7 +7,11 @@ import os
 load_dotenv()
 
 # Fetch DATABASE_URL from environment variables
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres@localhost:5432/orderdb1")
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://orderuser:T82RTOC1gVMtxhbHyqcIYYqWskLKN7EO@dpg-cvar0sdsvqrc73c1ai10-a/orderdb1")
+
+# Replace "postgres://" with "postgresql://" for SQLAlchemy compatibility
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
 # Create the database engine
 engine = create_engine(DATABASE_URL)
